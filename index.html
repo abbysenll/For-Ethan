@@ -13,11 +13,11 @@
       font-family: Arial, sans-serif;
     }
 
-    .container {
+    .cards-wrapper {
       display: flex;
-      justify-content: center; /* always center horizontally */
+      justify-content: center; /* center cards group */
       align-items: center;
-      gap: 40px; /* gap between two cards */
+      gap: 40px; /* space between two cards later */
       position: relative;
     }
 
@@ -52,7 +52,7 @@
       cursor: pointer;
       user-select: none;
       position: absolute;
-      right: -70px; /* position outside container */
+      right: -70px; /* outside wrapper */
       top: 50%;
       transform: translateY(-50%);
       transition: opacity 0.5s ease;
@@ -65,7 +65,7 @@
 </head>
 <body>
 
-  <div class="container" id="container">
+  <div class="cards-wrapper" id="cardsWrapper">
     <!-- INITIAL CENTER CARD -->
     <div class="card" id="titleCard">
       <h2>Title Here</h2>
