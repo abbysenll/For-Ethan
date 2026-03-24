@@ -16,23 +16,23 @@
     .container {
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center; /* center everything horizontally */
+      gap: 20px; /* more space for bigger cards */
     }
 
     .card {
-      width: 220px;
-      height: 300px;
+      width: 300px; /* bigger width */
+      height: 400px; /* bigger height */
       background: white;
       border: 2px solid black;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 10px;
+      padding: 20px;
       transition: transform 0.4s ease, opacity 0.4s ease;
     }
 
-    /* For hiding and animating */
     .hidden {
       opacity: 0;
       transform: scale(0.8);
@@ -40,14 +40,14 @@
     }
 
     .arrow-btn {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       border: 2px solid black;
       background: white;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 20px;
+      font-size: 25px;
       cursor: pointer;
       user-select: none;
       transition: background 0.2s;
@@ -89,13 +89,12 @@
       const c1 = document.getElementById("card1");
       const c2 = document.getElementById("card2");
 
-      // Hide left card with animation
+      // Animate left card disappearance
       left.style.transform = "scale(0.8)";
       left.style.opacity = "0";
 
       setTimeout(() => {
         left.classList.add("hidden");
-
         // Show right cards
         c1.classList.remove("hidden");
         c2.classList.remove("hidden");
