@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Split Cards Overlay</title>
+  <title>Overlay Side-by-Side Cards</title>
   <style>
     body {
       margin: 0;
@@ -14,13 +14,13 @@
     }
 
     .container {
-      position: relative; /* for overlaying cards */
-      width: 400px;  /* same as initial card */
-      height: 700px; /* same as initial card */
+      position: relative;
+      width: 800px;   /* double the original width to fit side by side */
+      height: 700px;  /* same as original height */
     }
 
     .card {
-      width: 400px;
+      width: 400px;   /* original card size */
       height: 700px;
       background: white;
       border: 2px solid black;
@@ -32,40 +32,45 @@
       font-weight: bold;
       position: absolute;
       top: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Original card in center */
+    #originalCard {
+      left: 200px; /* center in 800px container */
+    }
+
+    /* Left overlay card */
+    #leftCard {
       left: 0;
-      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    /* Right overlay card */
+    #rightCard {
+      left: 400px;
     }
 
     .hidden {
       opacity: 0;
       pointer-events: none;
     }
-
-    .split {
-      width: 200px; /* half of original card */
-      left: 0;
-    }
-
-    .split.right {
-      left: 200px; /* position right half */
-    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- Original large card -->
+    <!-- Original card -->
     <div class="card" id="originalCard">Title</div>
 
     <!-- Left overlay card -->
-    <div class="card hidden split" id="leftCard">Left</div>
+    <div class="card hidden" id="leftCard">Left</div>
 
     <!-- Right overlay card -->
-    <div class="card hidden split right" id="rightCard">Right</div>
+    <div class="card hidden" id="rightCard">Right</div>
   </div>
 
   <script>
-    // Example: show split cards after 1 second
+    // Example: show overlay cards after 1 second
     setTimeout(() => {
       document.getElementById('originalCard').classList.add('hidden');
       document.getElementById('leftCard').classList.remove('hidden');
