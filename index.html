@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Centered Card Split</title>
+  <title>Perfectly Centered Cards</title>
   <style>
     body {
       margin: 0;
@@ -17,7 +17,7 @@
       display: flex;
       justify-content: center; /* always center horizontally */
       align-items: center;
-      gap: 40px; /* gap between two cards when they appear */
+      gap: 40px; /* gap between two cards */
       position: relative;
     }
 
@@ -51,11 +51,11 @@
       font-size: 25px;
       cursor: pointer;
       user-select: none;
-      transition: opacity 0.5s ease;
       position: absolute;
-      right: -70px; /* position arrow outside initial card */
+      right: -70px; /* position outside container */
       top: 50%;
       transform: translateY(-50%);
+      transition: opacity 0.5s ease;
     }
 
     .arrow-btn:hover {
@@ -71,9 +71,6 @@
       <h2>Title Here</h2>
     </div>
 
-    <!-- ARROW BUTTON -->
-    <div class="arrow-btn" id="arrowBtn" onclick="splitCards()">▶</div>
-
     <!-- LEFT CARD -->
     <div class="card hidden" id="leftCard">
       <p>Left text</p>
@@ -83,6 +80,9 @@
     <div class="card hidden" id="rightCard">
       <p>Right text</p>
     </div>
+
+    <!-- ARROW BUTTON overlayed -->
+    <div class="arrow-btn" id="arrowBtn" onclick="splitCards()">▶</div>
   </div>
 
   <script>
@@ -97,7 +97,6 @@
       arrow.style.opacity = "0";
 
       setTimeout(() => {
-        // Hide initial card and arrow
         title.classList.add("hidden");
         arrow.classList.add("hidden");
 
