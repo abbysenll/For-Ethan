@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Card</title>
-
   <style>
     body {
       margin: 0;
@@ -11,7 +10,7 @@
       justify-content: center;
       align-items: center;
       background: #f5f5f5;
-      font-family: Arial;
+      font-family: Arial, sans-serif;
     }
 
     .container {
@@ -21,7 +20,7 @@
     }
 
     .card {
-      width: 200px;
+      width: 220px;
       height: 300px;
       background: white;
       border: 2px solid black;
@@ -30,31 +29,47 @@
       align-items: center;
       text-align: center;
       padding: 10px;
+      transition: transform 0.4s ease, opacity 0.4s ease;
     }
 
-    .arrow {
-      font-size: 30px;
+    /* For hiding and animating */
+    .hidden {
+      opacity: 0;
+      transform: scale(0.8);
+      pointer-events: none;
+    }
+
+    .arrow-btn {
+      width: 40px;
+      height: 40px;
+      border: 2px solid black;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
       cursor: pointer;
       user-select: none;
+      transition: background 0.2s;
     }
 
-    .hidden {
-      display: none;
+    .arrow-btn:hover {
+      background: #e0e0e0;
     }
+
   </style>
 </head>
-
 <body>
 
   <div class="container">
 
-    <!-- LEFT PANEL (always visible) -->
+    <!-- LEFT PANEL -->
     <div class="card" id="leftCard">
       <h2>Title Here</h2>
     </div>
 
-    <!-- RIGHT ARROW -->
-    <div class="arrow" onclick="openCard()">➡️</div>
+    <!-- RIGHT ARROW BUTTON -->
+    <div class="arrow-btn" onclick="openCard()">▶</div>
 
     <!-- RIGHT PANEL 1 -->
     <div class="card hidden" id="card1">
@@ -70,8 +85,21 @@
 
   <script>
     function openCard() {
-      document.getElementById("card1").classList.remove("hidden");
-      document.getElementById("card2").classList.remove("hidden");
+      const left = document.getElementById("leftCard");
+      const c1 = document.getElementById("card1");
+      const c2 = document.getElementById("card2");
+
+      // Hide left card with animation
+      left.style.transform = "scale(0.8)";
+      left.style.opacity = "0";
+
+      setTimeout(() => {
+        left.classList.add("hidden");
+
+        // Show right cards
+        c1.classList.remove("hidden");
+        c2.classList.remove("hidden");
+      }, 300);
     }
   </script>
 
