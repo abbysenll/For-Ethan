@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Card With Overlay Arrows</title>
+  <title>Card Split with Arrows</title>
   <style>
     body {
       margin: 0;
@@ -15,8 +15,8 @@
 
     .container {
       position: relative;
-      width: 800px;   /* double card width to fit overlay cards */
-      height: 800px;  /* some extra space for arrows */
+      width: 800px;   /* double card width */
+      height: 800px;  /* extra space for arrows */
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -37,7 +37,7 @@
       cursor: pointer;
       user-select: none;
       transition: opacity 0.3s ease;
-      z-index: 10; /* arrows on top */
+      z-index: 10; /* always on top */
     }
 
     #leftArrow {
@@ -70,19 +70,20 @@
     /* Original card centered */
     #originalCard {
       left: 200px;
-      z-index: 1; /* below overlay cards when hidden */
+      z-index: 1;
+      opacity: 1;
     }
 
     /* Overlay cards side by side */
     #leftCard {
       left: 0;
-      z-index: 5; /* on top */
+      z-index: 5;
       opacity: 0;
     }
 
     #rightCard {
       left: 400px;
-      z-index: 5; /* on top */
+      z-index: 5;
       opacity: 0;
     }
 
@@ -95,7 +96,6 @@
       opacity: 1;
       pointer-events: auto;
     }
-
   </style>
 </head>
 <body>
@@ -122,21 +122,21 @@
 
     rightArrow.addEventListener('click', () => {
       if (step === 0) {
-        // Step 1: show left arrow
-        leftArrow.style.opacity = '1';
-        step = 1;
-      } else if (step === 1) {
-        // Step 2: show overlay cards on top, hide original
+        // Step 1: show overlay cards, hide original card, show left arrow
         originalCard.classList.add('hidden');
         leftCard.style.opacity = '1';
         rightCard.style.opacity = '1';
-        step = 2;
+        leftArrow.style.opacity = '1';
+        step = 1;
       }
     });
 
     leftArrow.addEventListener('click', () => {
-      // Optional: go back to previous step if desired
       if (step === 1) {
+        // Step 2: go back to original card
+        originalCard.classList.remove('hidden');
+        leftCard.style.opacity = '0';
+        rightCard.style.opacity = '0';
         leftArrow.style.opacity = '0';
         step = 0;
       }
